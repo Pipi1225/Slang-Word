@@ -33,7 +33,7 @@ public class FileHandler {
         return map;
     }
 
-    public static void saveToFile(String path, Map<String, List<String>> map) {
+    public static void saveToFile(String path, HashMap<String, List<String>> map) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
             bw.write("Slang`Meaning");
             bw.newLine();
