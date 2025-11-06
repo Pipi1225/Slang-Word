@@ -8,6 +8,7 @@ public class FileHandler {
         Map<String, List<String>> map = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
+            line = br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("`", 2);
                 if (parts.length == 2) {
@@ -17,7 +18,9 @@ public class FileHandler {
                     List<String> definitions = new ArrayList<>();
                     for (String def : defs) {
                         def = def.trim();
-                        if (!def.isEmpty()) definitions.add(def);
+                        if (!def.isEmpty()) {
+                            definitions.add(def);
+                        }
                     }
 
                     map.put(slang, definitions);
@@ -32,6 +35,8 @@ public class FileHandler {
 
     public static void saveToFile(String path, Map<String, List<String>> map) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
+            bw.write("Slang`Meaning");
+            bw.newLine();
             for (Map.Entry<String, List<String>> e : map.entrySet()) {
                 bw.write(e.getKey() + "`" + String.join("| ", e.getValue()));
                 bw.newLine();
