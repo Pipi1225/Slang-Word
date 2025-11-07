@@ -6,10 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MenuHandler extends JFrame {
-    private final SlangDictionary dictionary;
-
+    private final ShowHistoryUI showHistory;
     public MenuHandler(SlangDictionary dictionary) {
-        this.dictionary = dictionary;
         setTitle("Slang Dictionary - Search by Slang");
         setSize(525, 400);
         setLocationRelativeTo(null);
@@ -18,7 +16,7 @@ public class MenuHandler extends JFrame {
 
         JButton feature1 = new JButton("Tìm kiếm theo slang word");
         JButton feature2 = new JButton("Tìm kiếm theo definition");
-        JButton feature3 = new JButton("Hiển thị history");
+        JButton feature3 = new JButton("Hiển thị lịch sử slang word");
         JButton feature4 = new JButton("Thêm slang word mới");
         JButton feature5 = new JButton("Chỉnh sửa slang word");
         JButton feature6 = new JButton("Xóa slang word");
@@ -26,6 +24,7 @@ public class MenuHandler extends JFrame {
         JButton feature8 = new JButton("Random 1 slang word");
         JButton feature9 = new JButton("Đố vui slang word");
         JButton feature10 = new JButton("Đố vui definition");
+        JButton exit = new JButton("Thoát");
 
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
@@ -47,18 +46,34 @@ public class MenuHandler extends JFrame {
             rightPanel.add(Box.createVerticalStrut(10));
         }
 
-        JPanel contentPanel = new JPanel(new GridLayout(1, 2));
-        contentPanel.add(leftPanel, BorderLayout.CENTER);
-        contentPanel.add(rightPanel, BorderLayout.CENTER);
+        exit.setAlignmentX(Component.CENTER_ALIGNMENT);
+        exit.setMaximumSize(new Dimension(100, 30));
+
+        JPanel featurePanel = new JPanel(new GridLayout(1, 2));
+        featurePanel.add(leftPanel, BorderLayout.CENTER);
+        featurePanel.add(rightPanel, BorderLayout.CENTER);
+        featurePanel.setMaximumSize(featurePanel.getPreferredSize());
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+        contentPanel.add(featurePanel);
+        contentPanel.add(Box.createVerticalStrut(20));
+        contentPanel.add(exit);
 
         CardLayout cardLayout = new CardLayout();
         JPanel mainPanel = new JPanel(cardLayout);
         mainPanel.add(contentPanel, "menu");
         mainPanel.add(new SearchBySlangUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "searchBySlang");
         mainPanel.add(new SearchByDefinitionUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "searchByDefinition");
+        showHistory = new ShowHistoryUI(dictionary, () -> cardLayout.show(mainPanel, "menu"));
+        mainPanel.add(showHistory, "showHistory");
 
         feature1.addActionListener(e -> cardLayout.show(mainPanel, "searchBySlang"));
         feature2.addActionListener(e -> cardLayout.show(mainPanel, "searchByDefinition"));
+        feature3.addActionListener(e -> {
+            showHistory.reloadHistory();
+            cardLayout.show(mainPanel, "showHistory");
+        });
+        exit.addActionListener(e -> System.exit(0));
 
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 40, 20));
         add(mainPanel, BorderLayout.CENTER);

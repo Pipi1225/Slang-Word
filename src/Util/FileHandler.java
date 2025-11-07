@@ -8,7 +8,7 @@ public class FileHandler {
         Map<String, List<String>> map = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
-            line = br.readLine();
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("`", 2);
                 if (parts.length == 2) {
