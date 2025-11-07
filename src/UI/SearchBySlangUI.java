@@ -8,26 +8,30 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class SearchBySlangUI extends BaseFeatureUI {
-    public SearchBySlangUI(SlangDictionary dictionary) {
-        super(dictionary);
+    public SearchBySlangUI(SlangDictionary dictionary, Runnable onBack) {
+        super(dictionary, onBack);
 
-        setLayout(new BorderLayout());
         JPanel topPanel = new JPanel(new FlowLayout());
         JLabel label = new JLabel("Nhập slang word:");
-        JTextField inputField = new JTextField(20);
+        JTextField inputField = new JTextField(16);
         JButton searchButton = new JButton("Search");
 
+        topPanel.add(backButton);
+        topPanel.add(Box.createHorizontalStrut(10));
         topPanel.add(label);
         topPanel.add(inputField);
         topPanel.add(searchButton);
+        topPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
 
         JTextArea resultArea = new JTextArea();
         resultArea.setEditable(false);
         resultArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
         JScrollPane scrollPane = new JScrollPane(resultArea);
 
-        add(topPanel, BorderLayout.NORTH);
-        add(scrollPane, BorderLayout.CENTER);
+        JPanel contentPanel = new JPanel(new BorderLayout());
+        contentPanel.add(topPanel, BorderLayout.NORTH);
+        contentPanel.add(scrollPane, BorderLayout.CENTER);
+        add(contentPanel, BorderLayout.CENTER);
 
        ActionListener searchAction = e -> {
             String slang = inputField.getText().trim();
