@@ -4,11 +4,10 @@ import Service.SlangDictionary;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 public class ShowHistoryUI extends BaseFeatureUI {
-    private JTextArea resultArea;
+    private final JTextArea resultArea;
 
     public ShowHistoryUI(SlangDictionary dictionary, Runnable onBack) {
         super(dictionary, onBack);

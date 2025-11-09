@@ -10,14 +10,9 @@ import java.util.List;
 
 import static Util.Utility.filterEmpty;
 
-public class AddNewSlangUI extends BaseFeatureUI {
-    JButton addNewMeaning = new JButton("+");
-    List<String> listMeaning = new ArrayList<>();
-    JPanel meaningsPanel;
-    JTextField inputField = new JTextField(16);
-
-    JButton overwriteButton = new JButton("Overwrite");
-    JButton duplicateButton = new JButton("Duplicate");
+public class AddNewSlangUI extends AddEditSlangUI {
+    private final JButton overwriteButton = new JButton("Overwrite");
+    private final JButton duplicateButton = new JButton("Duplicate");
     int flag = 0;
     // -1 - overwrite
     // 0  - current slang word unique
@@ -25,6 +20,8 @@ public class AddNewSlangUI extends BaseFeatureUI {
 
     public AddNewSlangUI(SlangDictionary dictionary, Runnable onBack) {
         super(dictionary, onBack);
+
+        listMeaning = new ArrayList<>();
 
         JPanel topPanel = new JPanel(new FlowLayout());
         JLabel label = new JLabel("Nhập slang word:");
@@ -34,7 +31,6 @@ public class AddNewSlangUI extends BaseFeatureUI {
         topPanel.add(label);
         topPanel.add(inputField);
 
-        meaningsPanel = new JPanel();
         meaningsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
         meaningsPanel.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
 
@@ -82,7 +78,10 @@ public class AddNewSlangUI extends BaseFeatureUI {
             flag = 1;
         });
 
-        resetButton.addActionListener(e -> resetList());
+        resetButton.addActionListener(e -> {
+            listMeaning.add("");
+            resetList();
+        });
 
         confirmButton.addActionListener(e -> {
             String slang = inputField.getText().trim();
@@ -112,76 +111,10 @@ public class AddNewSlangUI extends BaseFeatureUI {
                 JOptionPane.showMessageDialog(this, String.format("Thêm nghĩa của '%s' thành công!", slang));
             }
 
+            flag = 0;
+            overwriteButton.setEnabled(false);
+            duplicateButton.setEnabled(false);
             resetForm();
         });
-    }
-
-    private void resetForm() {
-        flag = 0;
-        overwriteButton.setEnabled(false);
-        duplicateButton.setEnabled(false);
-        inputField.setText("");
-        resetList();
-    }
-
-    private void resetList() {
-        listMeaning.clear();
-        listMeaning.add("");
-        refreshPanel();
-    }
-
-    private void refreshPanel() {
-        meaningsPanel.removeAll();
-
-        JPanel _contentPanel = new JPanel();
-        _contentPanel.setLayout(new BoxLayout(_contentPanel, BoxLayout.Y_AXIS));
-        for (int i = 0; i < listMeaning.size(); i++) {
-            JPanel _meaning = new JPanel();
-            _meaning.setLayout(new BoxLayout(_meaning, BoxLayout.X_AXIS));
-
-            final int index = i;
-            JTextField _newMeaning = new JTextField(30);
-            _newMeaning.setFont(new Font("Monospaced", Font.PLAIN, 14));
-            _newMeaning.setText(listMeaning.get(i));
-            _newMeaning.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-                @Override
-                public void insertUpdate(javax.swing.event.DocumentEvent e) {
-                    listMeaning.set(index, _newMeaning.getText());
-                }
-
-                @Override
-                public void removeUpdate(javax.swing.event.DocumentEvent e) {
-                    listMeaning.set(index, _newMeaning.getText());
-                }
-
-                @Override
-                public void changedUpdate(javax.swing.event.DocumentEvent e) {
-                    listMeaning.set(index, _newMeaning.getText());
-                }
-            });
-            _meaning.add(_newMeaning);
-
-            if (listMeaning.size() > 1) {
-                JButton _deleteButton = new JButton("-");
-                _deleteButton.addActionListener(ev -> {
-                    listMeaning.remove(index);
-                    refreshPanel();
-                });
-                _meaning.add(Box.createHorizontalStrut(10));
-                _meaning.add(_deleteButton);
-            }
-
-            _meaning.setMaximumSize(_meaning.getPreferredSize());
-
-            _contentPanel.add(_meaning);
-            _contentPanel.add(Box.createVerticalStrut(10));
-        }
-        JPanel plusPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        plusPanel.add(addNewMeaning);
-
-        _contentPanel.add(plusPanel, BorderLayout.CENTER);
-        meaningsPanel.add(_contentPanel);
-        meaningsPanel.revalidate();
-        meaningsPanel.repaint();
     }
 }

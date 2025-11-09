@@ -40,7 +40,7 @@ public class SearchBySlangUI extends BaseFeatureUI {
                 return;
             }
 
-            List<String> meanings = dictionary.searchBySlang(slang);
+            List<String> meanings = dictionary.searchBySlang(slang, true);
             resultArea.setText(""); // clear
 
             if (meanings == null) {

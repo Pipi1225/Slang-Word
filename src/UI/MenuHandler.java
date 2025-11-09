@@ -67,7 +67,7 @@ public class MenuHandler extends JFrame {
         showHistory = new ShowHistoryUI(dictionary, () -> cardLayout.show(mainPanel, "menu"));
         mainPanel.add(showHistory, "showHistory");
         mainPanel.add(new AddNewSlangUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "addNewSlang");
-
+        mainPanel.add(new EditSlangUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "editSlang");
 
         feature1.addActionListener(e -> cardLayout.show(mainPanel, "searchBySlang"));
         feature2.addActionListener(e -> cardLayout.show(mainPanel, "searchByDefinition"));
@@ -76,6 +76,8 @@ public class MenuHandler extends JFrame {
             cardLayout.show(mainPanel, "showHistory");
         });
         feature4.addActionListener(e -> cardLayout.show(mainPanel, "addNewSlang"));
+        feature5.addActionListener(e -> cardLayout.show(mainPanel, "editSlang"));
+
         exit.addActionListener(e -> System.exit(0));
 
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 40, 20));

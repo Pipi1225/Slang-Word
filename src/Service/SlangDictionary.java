@@ -37,9 +37,12 @@ public class SlangDictionary {
         }
     }
 
-    public List<String> searchBySlang(String slang) {
+    public List<String> searchBySlang(String slang, boolean addToHistory) {
         List<String> meanings = dictionary.get(slang);
-        addHistory(slang);
+
+        if (addToHistory) {
+            addHistory(slang);
+        }
 
         return meanings;
     }
