@@ -3,6 +3,8 @@ package Util;
 import java.io.*;
 import java.util.*;
 
+import static Util.Utility.filterEmpty;
+
 public class FileHandler {
     public static Map<String, List<String>> loadFromFile(String path) {
         Map<String, List<String>> map = new HashMap<>();
@@ -15,13 +17,7 @@ public class FileHandler {
                     String slang = parts[0].trim();
                     String[] defs = parts[1].split("\\|");
 
-                    List<String> definitions = new ArrayList<>();
-                    for (String def : defs) {
-                        def = def.trim();
-                        if (!def.isEmpty()) {
-                            definitions.add(def);
-                        }
-                    }
+                    List<String> definitions = filterEmpty(Arrays.asList(defs));
 
                     map.put(slang, definitions);
                 }
