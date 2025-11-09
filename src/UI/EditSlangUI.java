@@ -5,6 +5,7 @@ import Service.SlangDictionary;
 import javax.swing.*;
 import java.awt.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static Util.Utility.filterEmpty;
@@ -48,18 +49,21 @@ public class EditSlangUI extends AddEditSlangUI {
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 listMeaning = dictionary.searchBySlang(inputField.getText().trim(), false);
+                listMeaning = (listMeaning == null) ? null : new ArrayList<>(listMeaning);
                 refreshPanel();
             }
 
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 listMeaning = dictionary.searchBySlang(inputField.getText().trim(), false);
+                listMeaning = (listMeaning == null) ? null : new ArrayList<>(listMeaning);
                 refreshPanel();
             }
 
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 listMeaning = dictionary.searchBySlang(inputField.getText().trim(), false);
+                listMeaning = (listMeaning == null) ? null : new ArrayList<>(listMeaning);
                 refreshPanel();
             }
         });
@@ -86,6 +90,7 @@ public class EditSlangUI extends AddEditSlangUI {
 
             dictionary.overwriteSlang(slang, definitions);
             JOptionPane.showMessageDialog(this, String.format("Cập nhập nghĩa của '%s' thành công!", slang));
+            resetForm();
         });
     }
 }
