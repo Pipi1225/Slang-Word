@@ -6,10 +6,11 @@ import static Util.Utility.containKeyword;
 
 public class SlangDictionary {
     private final Map<String, List<String>> dictionary;
-    private final List<String> history = new ArrayList<>();
+    private final List<String> history;
 
-    public SlangDictionary(Map<String, List<String>> dictionary) {
+    public SlangDictionary(Map<String, List<String>> dictionary, List<String> history) {
         this.dictionary = dictionary;
+        this.history = history;
     }
 
     public void overwriteSlang(String key, List<String> value) {
@@ -75,6 +76,10 @@ public class SlangDictionary {
 
     public void clearHistory() {
         history.clear();
+    }
+
+    public Map<String, List<String>> getDictionary() {
+        return dictionary;
     }
 
     public List<String> getHistory() {

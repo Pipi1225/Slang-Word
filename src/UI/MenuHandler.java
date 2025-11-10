@@ -1,9 +1,13 @@
 package UI;
 
 import Service.SlangDictionary;
+import Util.FileHandler;
 
 import javax.swing.*;
 import java.awt.*;
+
+import static Util.Constant.dataPath;
+import static Util.Constant.historyPath;
 
 public class MenuHandler extends JFrame {
     private final ShowHistoryUI showHistory;
@@ -82,5 +86,10 @@ public class MenuHandler extends JFrame {
 
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 40, 20));
         add(mainPanel, BorderLayout.CENTER);
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            FileHandler.saveToFile(dataPath, dictionary.getDictionary());
+            FileHandler.saveHistory(historyPath, dictionary.getHistory());
+        }));
     }
 }

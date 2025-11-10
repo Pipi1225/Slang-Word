@@ -29,12 +29,39 @@ public class FileHandler {
         return map;
     }
 
-    public static void saveToFile(String path, HashMap<String, List<String>> map) {
+    public static void saveToFile(String path, Map<String, List<String>> map) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
-            bw.write("Slang`Meaning");
+            bw.write("Slag`Meaning");
             bw.newLine();
             for (Map.Entry<String, List<String>> e : map.entrySet()) {
                 bw.write(e.getKey() + "`" + String.join("| ", e.getValue()));
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static List<String> loadHistory(String path) {
+        List<String> history = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (!line.trim().isEmpty()) {
+                    history.add(line);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return history;
+    }
+
+    public static void saveHistory(String path, List<String> list) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
+            for (String i : list) {
+                bw.write(i);
                 bw.newLine();
             }
         } catch (IOException e) {
