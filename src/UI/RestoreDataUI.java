@@ -40,7 +40,7 @@ public class RestoreDataUI extends BaseFeatureUI {
             );
 
             if (choice == JOptionPane.YES_OPTION) {
-                dictionary.reloadFromFile("src/Data/slang_backup.txt");
+                dictionary.reloadFromFile("src/Data/slang.txt");
 
                 JOptionPane.showMessageDialog(
                         this,
