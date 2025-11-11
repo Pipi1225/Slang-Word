@@ -1109,7 +1109,7 @@ IHNC`I Have No Clue
 UAC`User Account Control
 IHNI`I Have No Idea
 UAE`United Arab Emirates
-:3`Cute| goofy face| cuti football| gooofidity
+:3`Cute| goofy face
 WYSIWYG`What You See Is What You Get
 UAK`You Already Know
 UOENO`You Don't Even Know
@@ -1119,7 +1119,7 @@ PHOAR`lust| physical attraction
 SYOTOS`See You On The Other Side
 UAN`Universal Access Number
 8|`Balls To The Wall
-:>`Mischievous smile| heheheheeh| woW!| abc
+:>`Mischievous smile
 UB2`You Be Too
 :?`Confused
 :@`Angry
@@ -6294,7 +6294,6 @@ YATB`You Are The Best
 TTFL`Ta Ta For Later
 OWK`Other World Kingdom
 NASA`National Aeronautics and Space Administration
-OWO`uwu what is this| WOW LOOK AT THIS| abababababa
 CARPE`Vomit| throw up
 OWN`Beat| dominate
 NASL`Name, Age, Sex, Location

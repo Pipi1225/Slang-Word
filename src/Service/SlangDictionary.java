@@ -1,5 +1,7 @@
 package Service;
 
+import Util.FileHandler;
+
 import java.util.*;
 
 import static Util.Utility.containKeyword;
@@ -11,6 +13,15 @@ public class SlangDictionary {
     public SlangDictionary(Map<String, List<String>> dictionary, List<String> history) {
         this.dictionary = dictionary;
         this.history = history;
+    }
+
+    public void reloadFromFile(String path) {
+        dictionary.clear();
+        dictionary.putAll(FileHandler.loadFromFile(path));
+    }
+
+    public boolean removeSlang(String key) {
+        return dictionary.remove(key) != null;
     }
 
     public void overwriteSlang(String key, List<String> value) {
