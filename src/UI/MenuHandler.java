@@ -18,17 +18,17 @@ public class MenuHandler extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout(10, 10));
 
-        JButton feature1 = new JButton("Tìm kiếm theo slang word");
-        JButton feature2 = new JButton("Tìm kiếm theo definition");
-        JButton feature3 = new JButton("Hiển thị lịch sử slang word");
-        JButton feature4 = new JButton("Thêm slang word mới");
-        JButton feature5 = new JButton("Chỉnh sửa slang word");
-        JButton feature6 = new JButton("Xóa slang word");
-        JButton feature7 = new JButton("Khôi phục danh sách slang words gốc");
-        JButton feature8 = new JButton("Random 1 slang word");
-        JButton feature9 = new JButton("Đố vui slang word");
-        JButton feature10 = new JButton("Đố vui definition");
-        JButton exit = new JButton("Thoát");
+        JButton feature1 = new JButton("Search by slang word");
+        JButton feature2 = new JButton("Search by definition");
+        JButton feature3 = new JButton("Slang search history");
+        JButton feature4 = new JButton("Add a new slang word");
+        JButton feature5 = new JButton("Edit a slang word");
+        JButton feature6 = new JButton("Delete a slang word");
+        JButton feature7 = new JButton("Restore original slang list");
+        JButton feature8 = new JButton("Random a slang word");
+        JButton feature9 = new JButton("Slang word quiz");
+        JButton feature10 = new JButton("Definition quiz");
+        JButton exit = new JButton("Exit program");
 
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
@@ -51,12 +51,12 @@ public class MenuHandler extends JFrame {
         }
 
         exit.setAlignmentX(Component.CENTER_ALIGNMENT);
-        exit.setMaximumSize(new Dimension(100, 30));
+        exit.setMaximumSize(new Dimension(180, 30));
 
         JPanel featurePanel = new JPanel(new GridLayout(1, 2));
         featurePanel.add(leftPanel, BorderLayout.CENTER);
         featurePanel.add(rightPanel, BorderLayout.CENTER);
-        featurePanel.setMaximumSize(featurePanel.getPreferredSize());
+        //featurePanel.setMaximumSize(featurePanel.getPreferredSize());
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.add(featurePanel);

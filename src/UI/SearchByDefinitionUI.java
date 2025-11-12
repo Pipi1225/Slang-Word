@@ -12,7 +12,7 @@ public class SearchByDefinitionUI extends BaseFeatureUI {
         super(dictionary, onBack);
 
         JPanel topPanel = new JPanel(new FlowLayout());
-        JLabel label = new JLabel("Nhập định nghĩa: ");
+        JLabel label = new JLabel("Enter definition: ");
         JTextField inputField = new JTextField(15);
         JButton searchButton = new JButton("Search");
 
@@ -37,14 +37,14 @@ public class SearchByDefinitionUI extends BaseFeatureUI {
             String keyword = inputField.getText().trim();
 
             if (keyword.isEmpty()) {
-               JOptionPane.showMessageDialog(this, "Vui lòng nhập định nghĩa!");
+               JOptionPane.showMessageDialog(this, "Please enter a definition!");
             }
 
             List<String> slangs = dictionary.searchByKeyword(keyword);
             resultArea.setText("");
 
             if (slangs.isEmpty()) {
-                resultArea.append("Không thấy slangs chứa keyword: " + keyword);
+                resultArea.append("No slang's found fitting the definition: " + keyword);
             } else {
                 for (String slang : slangs) {
                     resultArea.append("- " + slang.trim() + "\n");

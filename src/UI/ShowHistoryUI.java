@@ -13,8 +13,8 @@ public class ShowHistoryUI extends BaseFeatureUI {
         super(dictionary, onBack);
 
         JPanel topPanel = new JPanel(new FlowLayout());
-        JLabel label = new JLabel("Lịch sử search slang words");
-        JButton clearButton = new JButton("Xóa lịch sử");
+        JLabel label = new JLabel("Slang words search history");
+        JButton clearButton = new JButton("Clear history");
 
         topPanel.add(backButton);
         topPanel.add(Box.createHorizontalStrut(10));
@@ -43,7 +43,7 @@ public class ShowHistoryUI extends BaseFeatureUI {
         resultArea.setText("");
         List<String> history = dictionary.getHistory();
         if (history.isEmpty()) {
-            resultArea.setText("Chưa có từ nào được tìm.");
+            resultArea.setText("No words have been searched yet.");
         } else {
             for (int i = history.size() - 1; i >= 0; i--) {
                 resultArea.append("- " + history.get(i).trim() + "\n");

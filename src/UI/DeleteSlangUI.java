@@ -36,7 +36,7 @@ public class DeleteSlangUI extends BaseFeatureUI {
         button.addActionListener(e -> {
             String slang = inputField.getText();
             if (slang.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng nhập nghĩa cho slang word!");
+                JOptionPane.showMessageDialog(this, "Please enter a meaning for the slang word!");
                 return;
             }
 

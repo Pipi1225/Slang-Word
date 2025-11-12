@@ -24,7 +24,7 @@ public class AddNewSlangUI extends AddEditSlangUI {
         listMeaning = new ArrayList<>();
 
         JPanel topPanel = new JPanel(new FlowLayout());
-        JLabel label = new JLabel("Nhập slang word:");
+        JLabel label = new JLabel("Enter slang word:");
 
         topPanel.add(backButton);
         topPanel.add(Box.createHorizontalStrut(10));
@@ -86,18 +86,18 @@ public class AddNewSlangUI extends AddEditSlangUI {
         confirmButton.addActionListener(e -> {
             String slang = inputField.getText().trim();
             if (slang.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng nhập slang word!");
+                JOptionPane.showMessageDialog(this, "Please enter a slang word!");
                 return;
             }
 
             List<String> definitions = filterEmpty(listMeaning);
             if (definitions.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng nhập nghĩa cho slang word!");
+                JOptionPane.showMessageDialog(this, "Please enter a meaning for the slang word!");
                 return;
             }
 
             if (dictionary.containsSlang(slang) && flag == 0) {
-                JOptionPane.showMessageDialog(this, "Slang word này đã tồn tại, tự động chuyển sang chế độ thêm nghĩa (Duplicate).");
+                JOptionPane.showMessageDialog(this, "This slang word already exists. Automatically switching to add-meaning mode (Duplicate).");
                 overwriteButton.setEnabled(true);
                 flag = 1;
                 return;
@@ -105,10 +105,10 @@ public class AddNewSlangUI extends AddEditSlangUI {
 
             if (flag == -1) {
                 dictionary.overwriteSlang(slang, definitions);
-                JOptionPane.showMessageDialog(this, String.format("Ghi đè nghĩa của '%s' thành công!", slang));
+                JOptionPane.showMessageDialog(this, String.format("Successfully overwrote the meaning of '%s'!", slang));
             } else if (flag == 0 || flag == 1) {
                 dictionary.updateSlang(slang, definitions, flag);
-                JOptionPane.showMessageDialog(this, String.format("Thêm nghĩa của '%s' thành công!", slang));
+                JOptionPane.showMessageDialog(this, String.format("Successfully added meaning(s) for '%s'!", slang));
             }
 
             flag = 0;

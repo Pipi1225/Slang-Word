@@ -12,7 +12,7 @@ public class SearchBySlangUI extends BaseFeatureUI {
         super(dictionary, onBack);
 
         JPanel topPanel = new JPanel(new FlowLayout());
-        JLabel label = new JLabel("Nhập slang word:");
+        JLabel label = new JLabel("Enter slang word:");
         JTextField inputField = new JTextField(16);
         JButton searchButton = new JButton("Search");
 
@@ -36,17 +36,17 @@ public class SearchBySlangUI extends BaseFeatureUI {
        ActionListener searchAction = e -> {
             String slang = inputField.getText().trim();
             if (slang.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng nhập slang word!");
+                JOptionPane.showMessageDialog(this, "Please enter a slang word!");
                 return;
             }
 
             List<String> meanings = dictionary.searchBySlang(slang, true);
-            resultArea.setText(""); // clear
+            resultArea.setText("");
 
             if (meanings == null) {
-                resultArea.append("Không tìm thấy slang: " + slang);
+                resultArea.append("No slang found: " + slang);
             } else {
-                resultArea.append("Nghĩa của '" + slang + "':\n");
+                resultArea.append("Definitions of '" + slang + "':\n");
                 for (String meaning : meanings) {
                     resultArea.append("- " + meaning.trim() + "\n");
                 }
