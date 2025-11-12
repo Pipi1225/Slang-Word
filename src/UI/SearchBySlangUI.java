@@ -43,8 +43,8 @@ public class SearchBySlangUI extends BaseFeatureUI {
             List<String> meanings = dictionary.searchBySlang(slang, true);
             resultArea.setText("");
 
-            if (meanings == null) {
-                resultArea.append("No slang found: " + slang);
+            if (meanings.isEmpty()) {
+                resultArea.append("Not found slang word");
             } else {
                 resultArea.append("Definitions of '" + slang + "':\n");
                 for (String meaning : meanings) {

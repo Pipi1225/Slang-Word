@@ -7,29 +7,29 @@ import java.util.*;
 import static Util.Utility.containKeyword;
 
 public class SlangDictionary {
-    private final Map<String, List<String>> dictionary;
+    private final Map<String, List<String>> list;
     private final List<String> history;
 
-    public SlangDictionary(Map<String, List<String>> dictionary, List<String> history) {
-        this.dictionary = dictionary;
+    public SlangDictionary(Map<String, List<String>> list, List<String> history) {
+        this.list = list;
         this.history = history;
     }
 
     public void reloadFromFile(String path) {
-        dictionary.clear();
-        dictionary.putAll(FileHandler.loadFromFile(path));
+        list.clear();
+        list.putAll(FileHandler.loadFromFile(path));
     }
 
     public boolean removeSlang(String key) {
-        return dictionary.remove(key) != null;
+        return list.remove(key) != null;
     }
 
     public void overwriteSlang(String key, List<String> value) {
-        dictionary.put(key, new ArrayList<>(value));
+        list.put(key, new ArrayList<>(value));
     }
 
     public void updateSlang(String key, List<String> value, int addMore) {
-        List<String> exist = dictionary.computeIfAbsent(key, k -> new ArrayList<>());
+        List<String> exist = list.computeIfAbsent(key, k -> new ArrayList<>());
 
         if (addMore == 1) {
             HashSet<String> set = new HashSet<>();
@@ -50,7 +50,11 @@ public class SlangDictionary {
     }
 
     public List<String> searchBySlang(String slang, boolean addToHistory) {
-        List<String> meanings = dictionary.get(slang);
+        List<String> meanings = list.get(slang);
+
+        if (meanings == null) {
+            meanings = new ArrayList<>();
+        }
 
         if (addToHistory) {
             addHistory(slang);
@@ -61,8 +65,8 @@ public class SlangDictionary {
 
     public List<String> searchByKeyword(String keyword) {
         List<String> result = new ArrayList<>();
-        for (String key : dictionary.keySet()) {
-            List<String> defs = dictionary.get(key);
+        for (String key : list.keySet()) {
+            List<String> defs = list.get(key);
             for (String def : defs) {
                 if (containKeyword(keyword, def)) {
                     result.add(key);
@@ -75,7 +79,7 @@ public class SlangDictionary {
     }
 
     public boolean containsSlang(String slang) {
-        return dictionary.containsKey(slang);
+        return list.containsKey(slang);
     }
 
     private void addHistory(String query) {
@@ -90,7 +94,7 @@ public class SlangDictionary {
     }
 
     public Map<String, List<String>> getDictionary() {
-        return dictionary;
+        return list;
     }
 
     public List<String> getHistory() {

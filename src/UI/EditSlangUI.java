@@ -48,22 +48,19 @@ public class EditSlangUI extends AddEditSlangUI {
         inputField.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
-                listMeaning = dictionary.searchBySlang(inputField.getText().trim(), false);
-                listMeaning = (listMeaning == null) ? null : new ArrayList<>(listMeaning);
+                listMeaning = new ArrayList<>(dictionary.searchBySlang(inputField.getText().trim(), false));
                 refreshPanel();
             }
 
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
-                listMeaning = dictionary.searchBySlang(inputField.getText().trim(), false);
-                listMeaning = (listMeaning == null) ? null : new ArrayList<>(listMeaning);
+                listMeaning = new ArrayList<>(dictionary.searchBySlang(inputField.getText().trim(), false));
                 refreshPanel();
             }
 
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
-                listMeaning = dictionary.searchBySlang(inputField.getText().trim(), false);
-                listMeaning = (listMeaning == null) ? null : new ArrayList<>(listMeaning);
+                listMeaning = new ArrayList<>(dictionary.searchBySlang(inputField.getText().trim(), false));
                 refreshPanel();
             }
         });

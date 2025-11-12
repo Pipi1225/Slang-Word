@@ -4,11 +4,12 @@ import Service.SlangDictionary;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddEditSlangUI extends BaseFeatureUI {
     protected final JButton addNewMeaning = new JButton("+");
-    protected List<String> listMeaning = null;
+    protected List<String> listMeaning = new ArrayList<>();
     protected final JPanel meaningsPanel = new JPanel();
     protected final JTextField inputField = new JTextField(16);
 
@@ -22,9 +23,7 @@ public class AddEditSlangUI extends BaseFeatureUI {
     }
 
     protected void resetList() {
-        if (listMeaning != null) {
-            listMeaning.clear();
-        }
+        listMeaning.clear();
         refreshPanel();
     }
 
@@ -33,7 +32,7 @@ public class AddEditSlangUI extends BaseFeatureUI {
 
         JPanel _contentPanel = new JPanel();
         _contentPanel.setLayout(new BoxLayout(_contentPanel, BoxLayout.Y_AXIS));
-        if (listMeaning != null) {
+        if (!listMeaning.isEmpty()) {
             for (int i = 0; i < listMeaning.size(); i++) {
                 JPanel _meaning = new JPanel();
                 _meaning.setLayout(new BoxLayout(_meaning, BoxLayout.X_AXIS));

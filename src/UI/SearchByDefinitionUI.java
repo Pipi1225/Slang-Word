@@ -44,7 +44,7 @@ public class SearchByDefinitionUI extends BaseFeatureUI {
             resultArea.setText("");
 
             if (slangs.isEmpty()) {
-                resultArea.append("No slang's found fitting the definition: " + keyword);
+                resultArea.append("No slang's found fitting the definition");
             } else {
                 for (String slang : slangs) {
                     resultArea.append("- " + slang.trim() + "\n");
