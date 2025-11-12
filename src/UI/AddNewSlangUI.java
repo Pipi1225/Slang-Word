@@ -5,7 +5,6 @@ import Service.SlangDictionary;
 import javax.swing.*;
 import java.awt.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static Util.Utility.filterEmpty;
@@ -20,8 +19,6 @@ public class AddNewSlangUI extends AddEditSlangUI {
 
     public AddNewSlangUI(SlangDictionary dictionary, Runnable onBack) {
         super(dictionary, onBack);
-
-        listMeaning = new ArrayList<>();
 
         JPanel topPanel = new JPanel(new FlowLayout());
         JLabel label = new JLabel("Enter slang word:");
@@ -114,7 +111,11 @@ public class AddNewSlangUI extends AddEditSlangUI {
             flag = 0;
             overwriteButton.setEnabled(false);
             duplicateButton.setEnabled(false);
-            resetForm();
+
+            inputField.setText("");
+            listMeaning.clear();
+            listMeaning.add("");
+            refreshPanel();
         });
     }
 }
