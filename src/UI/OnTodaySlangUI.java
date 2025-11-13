@@ -26,7 +26,7 @@ public class OnTodaySlangUI extends BaseFeatureUI {
         label.setFont(label.getFont().deriveFont(14f));
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        String slang = getSlangOfTheDay(dictionary.getDictionary());
+        String slang = getSlangOfTheDay(dictionary);
         JLabel slangLabel = new JLabel(slang);
         slangLabel.setFont(label.getFont().deriveFont(24f));
         slangLabel.setForeground(new Color(52, 52, 106));

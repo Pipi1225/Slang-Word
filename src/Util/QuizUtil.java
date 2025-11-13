@@ -1,10 +1,13 @@
 package Util;
 
+import Service.SlangDictionary;
+
 import java.time.LocalDate;
 import java.util.*;
 
 public class QuizUtil {
-    public static String getSlangOfTheDay(Map<String, List<String>> list) {
+    public static String getSlangOfTheDay(SlangDictionary dictionary) {
+        Map<String, List<String>> list = dictionary.getDictionary();
         if (list.isEmpty()) {
             return "";
         }
@@ -12,10 +15,11 @@ public class QuizUtil {
         LocalDate today = LocalDate.now();
         int seed = today.getYear() * 10000 + today.getMonthValue() * 100 + today.getDayOfMonth();
 
-        return getRandomSlang(list, seed);
+        return getRandomSlang(dictionary, seed);
     }
 
-    public static String getRandomSlang(Map<String, List<String>> list, int seed) {
+    public static String getRandomSlang(SlangDictionary dictionary, int seed) {
+        Map<String, List<String>> list = dictionary.getDictionary();
         List<String> keys = new ArrayList<>(list.keySet());
 
         Random random;
@@ -27,6 +31,17 @@ public class QuizUtil {
         int index = random.nextInt(keys.size());
 
         return keys.get(index);
+    }
+
+    public static String getRandomDefinition(SlangDictionary dictionary, String slang) {
+        List<String> definitions = dictionary.searchBySlang(slang, false);
+        if (definitions == null || definitions.isEmpty()) {
+            return "";
+        }
+        
+        Random random = new Random();
+        int index = random.nextInt(definitions.size());
+        return definitions.get(index);
     }
 
     public static List<String> getSlangQuiz(Map<String, List<String>> list, String slang) {
@@ -44,9 +59,9 @@ public class QuizUtil {
         }
 
         Set<String> usedDefs = new HashSet<>();
-
+        List<String> keys = new ArrayList<>(list.keySet());
         while (quiz.size() < 4) {
-            String key = quiz.get(random.nextInt(quiz.size()));
+            String key = keys.get(random.nextInt(keys.size()));
             List<String> defs = list.get(key);
             if (defs == null || defs.isEmpty()) continue;
 
@@ -56,8 +71,6 @@ public class QuizUtil {
             quiz.add(def);
             usedDefs.add(def);
         }
-
-        Collections.shuffle(quiz);
 
         return quiz;
     }
@@ -94,8 +107,6 @@ public class QuizUtil {
             quiz.add(slang);
             usedSlangs.add(slang);
         }
-
-        Collections.shuffle(quiz);
 
         return quiz;
     }

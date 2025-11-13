@@ -75,7 +75,8 @@ public class MenuHandler extends JFrame {
         mainPanel.add(new DeleteSlangUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "deleteSlang");
         mainPanel.add(new RestoreDataUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "restoreData");
         mainPanel.add(new OnTodaySlangUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "todaySlang");
-
+        mainPanel.add(new SlangQuizUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "slangQuiz");
+        mainPanel.add(new DefinitionQuizUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "definitionQuiz");
 
         feature1.addActionListener(e -> cardLayout.show(mainPanel, "searchBySlang"));
         feature2.addActionListener(e -> cardLayout.show(mainPanel, "searchByDefinition"));
@@ -88,6 +89,9 @@ public class MenuHandler extends JFrame {
         feature6.addActionListener(e -> cardLayout.show(mainPanel, "deleteSlang"));
         feature7.addActionListener(e -> cardLayout.show(mainPanel, "restoreData"));
         feature8.addActionListener(e -> cardLayout.show(mainPanel, "todaySlang"));
+        feature9.addActionListener(e -> cardLayout.show(mainPanel, "slangQuiz"));
+        feature10.addActionListener(e -> cardLayout.show(mainPanel, "definitionQuiz"));
+
 
         exit.addActionListener(e -> System.exit(0));
 
