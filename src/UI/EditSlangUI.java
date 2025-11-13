@@ -11,6 +11,7 @@ import java.util.List;
 import static Util.Utility.filterEmpty;
 
 public class EditSlangUI extends AddEditSlangUI {
+    private List<String> originalList = new ArrayList<>();
     public EditSlangUI(SlangDictionary dictionary, Runnable onBack) {
         super(dictionary, onBack);
 
@@ -45,23 +46,26 @@ public class EditSlangUI extends AddEditSlangUI {
 
         refreshPanel();
 
+        Timer debounceTimer = new Timer(250, e -> updateOriginal());
+        debounceTimer.setRepeats(false);
         inputField.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            private void restartTimer() {
+                debounceTimer.restart();
+            }
+
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
-                listMeaning = new ArrayList<>(dictionary.searchBySlang(inputField.getText().trim(), false));
-                refreshPanel();
+                restartTimer();
             }
 
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
-                listMeaning = new ArrayList<>(dictionary.searchBySlang(inputField.getText().trim(), false));
-                refreshPanel();
+                restartTimer();
             }
 
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
-                listMeaning = new ArrayList<>(dictionary.searchBySlang(inputField.getText().trim(), false));
-                refreshPanel();
+                restartTimer();
             }
         });
 
@@ -70,7 +74,10 @@ public class EditSlangUI extends AddEditSlangUI {
             refreshPanel();
         });
 
-        resetButton.addActionListener(e -> resetForm());
+        resetButton.addActionListener(e -> {
+            listMeaning = new ArrayList<>(originalList);
+            refreshPanel();
+        });
 
         confirmButton.addActionListener(e -> {
             String slang = inputField.getText().trim();
@@ -87,7 +94,13 @@ public class EditSlangUI extends AddEditSlangUI {
 
             dictionary.overwriteSlang(slang, definitions);
             JOptionPane.showMessageDialog(this, String.format("Successfully updated the meaning of '%s'!", slang));
-            resetForm();
+            resetForm(false);
         });
+    }
+
+    private void updateOriginal() {
+        listMeaning = new ArrayList<>(dictionary.searchBySlang(inputField.getText().trim(), false));
+        originalList = new ArrayList<>(listMeaning);
+        refreshPanel();
     }
 }

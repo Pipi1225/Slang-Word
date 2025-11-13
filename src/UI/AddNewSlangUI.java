@@ -76,8 +76,11 @@ public class AddNewSlangUI extends AddEditSlangUI {
         });
 
         resetButton.addActionListener(e -> {
-            listMeaning.add("");
-            resetList();
+            overwriteButton.setEnabled(false);
+            duplicateButton.setEnabled(false);
+            flag = 0;
+
+            resetList(true);
         });
 
         confirmButton.addActionListener(e -> {
@@ -111,11 +114,7 @@ public class AddNewSlangUI extends AddEditSlangUI {
             flag = 0;
             overwriteButton.setEnabled(false);
             duplicateButton.setEnabled(false);
-
-            inputField.setText("");
-            listMeaning.clear();
-            listMeaning.add("");
-            refreshPanel();
+            resetForm(true);
         });
     }
 }

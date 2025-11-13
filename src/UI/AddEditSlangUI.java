@@ -17,13 +17,16 @@ public class AddEditSlangUI extends BaseFeatureUI {
         super(dictionary, onBack);
     }
 
-    protected void resetForm() {
+    protected void resetForm(boolean addPlaceholder) {
         inputField.setText("");
-        resetList();
+        resetList(addPlaceholder);
     }
 
-    protected void resetList() {
+    protected void resetList(boolean addPlaceholder) {
         listMeaning.clear();
+        if (addPlaceholder) {
+            listMeaning.add("");
+        }
         refreshPanel();
     }
 
