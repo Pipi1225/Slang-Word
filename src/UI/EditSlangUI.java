@@ -1,6 +1,7 @@
 package UI;
 
 import Service.SlangDictionary;
+import Util.FileHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +9,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Util.Constant.dataPath;
 import static Util.Utility.filterEmpty;
 
 public class EditSlangUI extends AddEditSlangUI {
@@ -93,6 +95,7 @@ public class EditSlangUI extends AddEditSlangUI {
             }
 
             dictionary.overwriteSlang(slang, definitions);
+            FileHandler.saveToFile(dataPath, dictionary.getDictionary());
             JOptionPane.showMessageDialog(this, String.format("Successfully updated the meaning of '%s'!", slang));
             resetForm(false);
         });

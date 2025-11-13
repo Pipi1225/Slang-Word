@@ -95,7 +95,7 @@ public class MenuHandler extends JFrame {
         add(mainPanel, BorderLayout.CENTER);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            FileHandler.saveData("src/Data/slang_data.dat", dictionary.getDictionary());
+            FileHandler.saveToFile(dataPath, dictionary.getDictionary());
             FileHandler.saveHistory(historyPath, dictionary.getHistory());
         }));
     }

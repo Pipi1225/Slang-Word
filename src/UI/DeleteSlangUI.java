@@ -1,9 +1,12 @@
 package UI;
 
 import Service.SlangDictionary;
+import Util.FileHandler;
 
 import javax.swing.*;
 import java.awt.*;
+
+import static Util.Constant.dataPath;
 
 public class DeleteSlangUI extends BaseFeatureUI {
     public DeleteSlangUI(SlangDictionary dictionary, Runnable onBack) {
@@ -61,6 +64,7 @@ public class DeleteSlangUI extends BaseFeatureUI {
                     message = "Failed to delete '" + slang + "'";
                 }
 
+                FileHandler.saveToFile(dataPath, dictionary.getDictionary());
                 JOptionPane.showMessageDialog(
                         this,
                         message,

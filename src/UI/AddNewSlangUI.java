@@ -1,12 +1,14 @@
 package UI;
 
 import Service.SlangDictionary;
+import Util.FileHandler;
 
 import javax.swing.*;
 import java.awt.*;
 
 import java.util.List;
 
+import static Util.Constant.dataPath;
 import static Util.Utility.filterEmpty;
 
 public class AddNewSlangUI extends AddEditSlangUI {
@@ -111,6 +113,7 @@ public class AddNewSlangUI extends AddEditSlangUI {
                 JOptionPane.showMessageDialog(this, String.format("Successfully added meaning(s) for '%s'!", slang));
             }
 
+            FileHandler.saveToFile(dataPath, dictionary.getDictionary());
             flag = 0;
             overwriteButton.setEnabled(false);
             duplicateButton.setEnabled(false);
