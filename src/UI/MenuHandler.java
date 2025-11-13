@@ -74,6 +74,7 @@ public class MenuHandler extends JFrame {
         mainPanel.add(new EditSlangUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "editSlang");
         mainPanel.add(new DeleteSlangUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "deleteSlang");
         mainPanel.add(new RestoreDataUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "restoreData");
+        mainPanel.add(new OnTodaySlangUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "todaySlang");
 
 
         feature1.addActionListener(e -> cardLayout.show(mainPanel, "searchBySlang"));
@@ -86,6 +87,7 @@ public class MenuHandler extends JFrame {
         feature5.addActionListener(e -> cardLayout.show(mainPanel, "editSlang"));
         feature6.addActionListener(e -> cardLayout.show(mainPanel, "deleteSlang"));
         feature7.addActionListener(e -> cardLayout.show(mainPanel, "restoreData"));
+        feature8.addActionListener(e -> cardLayout.show(mainPanel, "todaySlang"));
 
         exit.addActionListener(e -> System.exit(0));
 
@@ -93,7 +95,7 @@ public class MenuHandler extends JFrame {
         add(mainPanel, BorderLayout.CENTER);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            FileHandler.saveToFile(dataPath, dictionary.getDictionary());
+            FileHandler.saveData("src/Data/slang_data.dat", dictionary.getDictionary());
             FileHandler.saveHistory(historyPath, dictionary.getHistory());
         }));
     }
