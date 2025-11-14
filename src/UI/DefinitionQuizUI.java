@@ -10,7 +10,7 @@ import java.util.List;
 
 import static Util.QuizUtil.*;
 
-public class DefinitionQuizUI extends BaseFeatureUI {
+public class DefinitionQuizUI extends BaseQuizUI {
     public DefinitionQuizUI(SlangDictionary dictionary, Runnable onBack) {
         super(dictionary, onBack);
 
@@ -28,30 +28,17 @@ public class DefinitionQuizUI extends BaseFeatureUI {
         label.setFont(label.getFont().deriveFont(14f));
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        String def = getRandomDefinition(dictionary, getRandomSlang(dictionary, -1));
-        JLabel defLabel = new JLabel(def);
-        defLabel.setFont(label.getFont().deriveFont(17f));
-        defLabel.setForeground(new Color(52, 52, 106));
-        defLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        quizLabel.setFont(quizLabel.getFont().deriveFont(17f));
+        quizLabel.setForeground(new Color(52, 52, 106));
+        quizLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        List<JButton> buttons = new ArrayList<>();
-        JPanel quizArea = new JPanel(new GridLayout(2, 2, 15, 15));
-        List<String> slangs = getDefinitionQuiz(dictionary.getDictionary(), def);
-        for (int i = 0; i < slangs.size(); i++) {
-            JButton button = getJButton(onBack, slangs, i);
-            buttons.add(button);
-        }
-
-        Collections.shuffle(buttons);
-        for (JButton button : buttons) {
-            quizArea.add(button);
-        }
+        refreshQuiz();
         quizArea.setMaximumSize(quizArea.getPreferredSize());
 
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 15, 0));
         contentPanel.add(label);
         contentPanel.add(Box.createVerticalStrut(10));
-        contentPanel.add(defLabel);
+        contentPanel.add(quizLabel);
         defPanel.add(contentPanel, BorderLayout.NORTH);
         defPanel.add(quizArea, BorderLayout.CENTER);
 
@@ -59,28 +46,21 @@ public class DefinitionQuizUI extends BaseFeatureUI {
         add(defPanel, BorderLayout.CENTER);
     }
 
-    private JButton getJButton(Runnable onBack, List<String> slangs, int i) {
-        JButton button = new JButton();
-        button.setText("<html><center>" + slangs.get(i) + "</center></html>");
+    protected void refreshQuiz() {
+        String def = getRandomDefinition(dictionary, getRandomSlang(dictionary, -1));
+        quizLabel.setText(def);
 
-        button.setMaximumSize(new Dimension(200, 30));
-        if (i == 0) {
-            button.addActionListener(e -> {
-                JOptionPane.showMessageDialog(this, "Victory! You won!");
-                removeAll();
-                add(new DefinitionQuizUI(dictionary, onBack));
-                revalidate();
-                repaint();
-            });
-        } else {
-            button.addActionListener(e -> {
-                JOptionPane.showMessageDialog(this, "Oh no! You lose!");
-                removeAll();
-                add(new DefinitionQuizUI(dictionary, onBack));
-                revalidate();
-                repaint();
-            });
+        List<JButton> buttons = new ArrayList<>();
+        List<String> slangs = getDefinitionQuiz(dictionary.getDictionary(), def);
+        for (int i = 0; i < slangs.size(); i++) {
+            JButton button = getJButton(slangs, i);
+            buttons.add(button);
         }
-        return button;
+
+        quizArea.removeAll();
+        Collections.shuffle(buttons);
+        for (JButton button : buttons) {
+            quizArea.add(button);
+        }
     }
 }
