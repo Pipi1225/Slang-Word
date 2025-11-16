@@ -84,7 +84,7 @@ public class SlangDictionary {
 
     private void addHistory(String query) {
         history.add(query);
-        if (history.size() > 30) {
+        if (history.size() > 200) {
             history.removeFirst();
         }
     }
