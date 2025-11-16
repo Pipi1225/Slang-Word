@@ -1109,7 +1109,6 @@ IHNC`I Have No Clue
 UAC`User Account Control
 IHNI`I Have No Idea
 UAE`United Arab Emirates
-:3`Cute| goofy face
 WYSIWYG`What You See Is What You Get
 UAK`You Already Know
 UOENO`You Don't Even Know
@@ -1119,7 +1118,7 @@ PHOAR`lust| physical attraction
 SYOTOS`See You On The Other Side
 UAN`Universal Access Number
 8|`Balls To The Wall
-:>`Mischievous smile
+:>`Mischievous smile| Nyan nyan nyanbun
 UB2`You Be Too
 :?`Confused
 :@`Angry
@@ -1135,7 +1134,6 @@ UAV`Urban Assault Vehicle
 :L`Laughing
 THE BOMB`Really cool
 ROXORZ`Rocks
-:O`Surprised
 :P`Sticking tongue out
 UBD`User Brain Damage
 :Q`Smoking
@@ -1167,6 +1165,7 @@ DAT`That
 DAW`Digital Audio Workstation
 THOU`You
 THOT`HOE
+XinchaobuoisangAuminiliti`AUANH| AUEM| AULITI!| NYAAAA| NYARRGHHHHHHHH
 <>`Not equal| No comment
 :|`Disgust| disapproval| not funny
 DBA`Don't Bother Asking
@@ -4168,6 +4167,7 @@ IWC`Internet Wrestling Community
 MISH`Missionary position
 OOYL`Out Of Your League
 CLUT`Clumsy person
+[:<`Nyan nyan NyanBun
 MISO`My Internet Shut Off
 IWM`It Wasn't Me
 MONROE`Piercing between nose and upper lip
@@ -4486,7 +4486,7 @@ TONK`Strong| muscular
 GIGO`Garbage In, Garbage Out
 BESITOS`Little kisses
 IOMW`I'm On My Way
-:>>`Super mischieovus smile
+:>>`abbcc| abbbbccccccc
 TOMO`Tomorrow
 WGWG`White Guy With Guitar
 TOPS`Wonderful| fantastic
