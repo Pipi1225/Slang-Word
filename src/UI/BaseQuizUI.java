@@ -29,7 +29,7 @@ public abstract class BaseQuizUI extends BaseFeatureUI {
             });
         } else {
             button.addActionListener(e -> {
-                JOptionPane.showMessageDialog(this, "Oh no! You lose!");
+                JOptionPane.showMessageDialog(this, "Oh no! You lose!\nThe answer is\n" + keys.getFirst());
                 refreshQuiz();
                 revalidate();
                 repaint();
