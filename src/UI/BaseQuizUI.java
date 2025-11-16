@@ -13,7 +13,7 @@ public abstract class BaseQuizUI extends BaseFeatureUI {
         super(dictionary, onBack);
     }
 
-    protected abstract void refreshQuiz();
+    public abstract void refreshQuiz();
 
     protected JButton getJButton(List<String> keys, int i) {
         JButton button = new JButton();

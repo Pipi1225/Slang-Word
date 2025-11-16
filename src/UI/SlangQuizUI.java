@@ -46,7 +46,7 @@ public class SlangQuizUI extends BaseQuizUI {
         add(slangPanel, BorderLayout.CENTER);
     }
 
-    protected void refreshQuiz() {
+    public void refreshQuiz() {
         String slang = getRandomSlang(dictionary, -1);
         quizLabel.setText(slang);
 

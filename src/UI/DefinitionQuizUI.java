@@ -46,7 +46,7 @@ public class DefinitionQuizUI extends BaseQuizUI {
         add(defPanel, BorderLayout.CENTER);
     }
 
-    protected void refreshQuiz() {
+    public void refreshQuiz() {
         String def = getRandomDefinition(dictionary, getRandomSlang(dictionary, -1));
         quizLabel.setText(def);
 

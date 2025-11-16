@@ -11,6 +11,10 @@ import static Util.Constant.historyPath;
 
 public class MenuHandler extends JFrame {
     private final ShowHistoryUI showHistory;
+    private final EditSlangUI editSlang;
+    private final SlangQuizUI slangQuiz;
+    private final DefinitionQuizUI defiQuiz;
+
     public MenuHandler(SlangDictionary dictionary) {
         setTitle("Slang Dictionary - Search by Slang");
         setSize(525, 400);
@@ -71,12 +75,15 @@ public class MenuHandler extends JFrame {
         showHistory = new ShowHistoryUI(dictionary, () -> cardLayout.show(mainPanel, "menu"));
         mainPanel.add(showHistory, "showHistory");
         mainPanel.add(new AddNewSlangUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "addNewSlang");
-        mainPanel.add(new EditSlangUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "editSlang");
+        editSlang = new EditSlangUI(dictionary, () -> cardLayout.show(mainPanel, "menu"));
+        mainPanel.add(editSlang, "editSlang");
         mainPanel.add(new DeleteSlangUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "deleteSlang");
         mainPanel.add(new RestoreDataUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "restoreData");
         mainPanel.add(new OnTodaySlangUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "todaySlang");
-        mainPanel.add(new SlangQuizUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "slangQuiz");
-        mainPanel.add(new DefinitionQuizUI(dictionary, () -> cardLayout.show(mainPanel, "menu")), "definitionQuiz");
+        slangQuiz = new SlangQuizUI(dictionary, () -> cardLayout.show(mainPanel, "menu"));
+        mainPanel.add(slangQuiz, "slangQuiz");
+        defiQuiz = new DefinitionQuizUI(dictionary, () -> cardLayout.show(mainPanel, "menu"));
+        mainPanel.add(defiQuiz, "definitionQuiz");
 
         feature1.addActionListener(e -> cardLayout.show(mainPanel, "searchBySlang"));
         feature2.addActionListener(e -> cardLayout.show(mainPanel, "searchByDefinition"));
@@ -85,13 +92,21 @@ public class MenuHandler extends JFrame {
             cardLayout.show(mainPanel, "showHistory");
         });
         feature4.addActionListener(e -> cardLayout.show(mainPanel, "addNewSlang"));
-        feature5.addActionListener(e -> cardLayout.show(mainPanel, "editSlang"));
+        feature5.addActionListener(e -> {
+            editSlang.updateOriginal();
+            cardLayout.show(mainPanel, "editSlang");
+        });
         feature6.addActionListener(e -> cardLayout.show(mainPanel, "deleteSlang"));
         feature7.addActionListener(e -> cardLayout.show(mainPanel, "restoreData"));
         feature8.addActionListener(e -> cardLayout.show(mainPanel, "todaySlang"));
-        feature9.addActionListener(e -> cardLayout.show(mainPanel, "slangQuiz"));
-        feature10.addActionListener(e -> cardLayout.show(mainPanel, "definitionQuiz"));
-
+        feature9.addActionListener(e -> {
+            slangQuiz.refreshQuiz();
+            cardLayout.show(mainPanel, "slangQuiz");
+        });
+        feature10.addActionListener(e -> {
+            defiQuiz.refreshQuiz();
+            cardLayout.show(mainPanel, "definitionQuiz");
+        });
 
         exit.addActionListener(e -> System.exit(0));
 

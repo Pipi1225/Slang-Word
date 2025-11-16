@@ -101,7 +101,7 @@ public class EditSlangUI extends AddEditSlangUI {
         });
     }
 
-    private void updateOriginal() {
+    public void updateOriginal() {
         listMeaning = new ArrayList<>(dictionary.searchBySlang(inputField.getText().trim(), false));
         originalList = new ArrayList<>(listMeaning);
         refreshPanel();
