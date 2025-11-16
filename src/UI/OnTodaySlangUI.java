@@ -37,7 +37,7 @@ public class OnTodaySlangUI extends BaseFeatureUI {
         resultArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
         resultArea.setText("");
         JScrollPane scrollPane = new JScrollPane(resultArea);
-        List<String> meanings = dictionary.searchBySlang(slang, true);
+        List<String> meanings = dictionary.searchBySlang(slang, false);
         for (String meaning : meanings) {
             resultArea.append("- " + meaning.trim() + "\n");
         }
